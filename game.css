@@ -1,0 +1,12 @@
+body {
+  font-family:fixed;
+}
+
+#field {
+  margin:20px;
+}
+
+.cell {
+  display:block;
+  position:absolute;
+}
