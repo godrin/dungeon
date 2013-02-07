@@ -10,6 +10,10 @@ $(function() {
       }
       return self.value;
     };
+    this.passable=function() {
+      var r= self.value=="." && !this.monster;
+      return r;
+    };
   }
 
   function Monster(ops) {
@@ -19,16 +23,22 @@ $(function() {
     ops.field.field(self.x,self.y).monster=this;
 
     this.moveBy=function(by) {
-      delete ops.field.field(self.x,self.y).monster;
 
-      if(by.x) {
-	self.x+=by.x;
-      }
-      if(by.y) {
-	self.y+=by.y;
-      }
-      ops.field.field(self.x,self.y).monster=self;
+      var tx=self.x;
+      var ty=self.y;
+      if(by.x)
+	tx+=by.x;
+      if(by.y)
+	ty+=by.y;
+      if(ops.field.posOk(tx,ty)) {
+	if(ops.field.field(tx,ty).passable()) {
+	  delete ops.field.field(self.x,self.y).monster;
 
+	  self.x=tx;
+	  self.y=ty;
+	  ops.field.field(self.x,self.y).monster=self;
+	}
+      }
     };
   }
 
@@ -40,25 +50,28 @@ $(function() {
 
     var fields=[];
     var monsters={};
+    this.posOk=function(x,y) {
+      return x>=0 && x<self.w && y>=0 && y<self.h;
+    };
 
     this.field=function(x,y) {
-
       return fields[x+y*self.w];
     };
 
-
-
     this.init=function() {
       for(var i=0;i<self.w*self.h;i++) {
-	fields.push(new Cell());
+	var cell=new Cell();
+	var x=i%self.w;
+	var y=Math.floor(i/self.w);
+	if(x==0 || x==self.w-1 || y==0 || y==self.h-1)
+	  cell.value="#";
+	fields.push(cell);
       }
-      //self.field(2,2).value="@";
-      //
       self.player=monsters.player=new Monster({value:"@",type:"player",x:2,y:2,field:self});
 
     };
 
-    this.eachField=function(callback) {
+    this.eachCell=function(callback) {
       var x,y;
       for(x=0;x<self.w;x++) {
 	for(y=0;y<self.h;y++) {
@@ -83,7 +96,7 @@ $(function() {
     this.init=function() {
       $(self.el).empty();
 
-      model.eachField(function(cell) {
+      model.eachCell(function(cell) {
 	var html=new CellView(cell).html();
 	var e=$(html);
 	e.css({left:cell.x*self.cellWidth,
@@ -100,12 +113,12 @@ $(function() {
       106:{y:1},
       107:{y:-1},
       121:{x:-1,y:-1},
-	122:{x:-1,y:-1},
-	98:{x:-1,y:1},
-	110:{x:1,y:1},
-	117:{x:1,y:-1},
-	60:{z:1},
-	62:{z:-1}
+      122:{x:-1,y:-1},
+      98:{x:-1,y:1},
+      110:{x:1,y:1},
+      117:{x:1,y:-1},
+      60:{z:1},
+      62:{z:-1}
     };
 
     $.extend(this,ops);
