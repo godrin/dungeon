@@ -83,7 +83,10 @@ $(function() {
 
   function CellView(cell) {
     this.html=function() {
-      return "<div class='cell' id='"+cell.x+"_"+cell.y+"'>"+cell.cell.get()+"</div>";
+      var h="<div class='cell' id='"+cell.x+"_"+cell.y+"'>"+cell.cell.value+"</div>";
+      if(cell.cell.monster)
+	h+="<div class='cell monster' id='monster_"+cell.x+"_"+cell.y+"'>"+cell.cell.monster.value+"</div>";
+      return h;
     }
   }
 
