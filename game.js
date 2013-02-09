@@ -1,7 +1,7 @@
 $(function() {
 
   function Cell() {
-    this.value=".";
+    this.value="<div id='pass'></div>";
     var self=this;
 
     this.get=function() {
@@ -64,10 +64,10 @@ $(function() {
 	var x=i%self.w;
 	var y=Math.floor(i/self.w);
 	if(x==0 || x==self.w-1 || y==0 || y==self.h-1)
-	  cell.value="#";
+	  cell.value="<div id='wall'></div>";
 	fields.push(cell);
       }
-      self.player=monsters.player=new Monster({value:"@",type:"player",x:2,y:2,field:self});
+      self.player=monsters.player=new Monster({value:"<div id='player'></div>",type:"player",x:2,y:2,field:self});
 
     };
 
@@ -108,7 +108,8 @@ $(function() {
 
   }
   function Controller(ops) {
-    this.keymap={104:{x:-1},
+    this.keymap={
+      104:{x:-1},
       108:{x:1},
       106:{y:1},
       107:{y:-1},

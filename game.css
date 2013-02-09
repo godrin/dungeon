@@ -8,6 +8,32 @@ body {
 }
 
 .cell {
+  height: 20px;
+  width: 20px;
+  background-size:cover;
   display:block;
   position:absolute;
+}
+
+#pass {
+	height:20px;
+	width:20px;
+    background-image:url('bg_01.png');
+}
+
+#wall {
+	height:20px;
+	width:20px;
+    background-image:url('bg_01.png');
+    background-position:center;
+}
+
+#player {
+	height:30px;
+	width:30px;
+    background-image:url('player.png');
+    float:right;
+    background-size:cover;
+    z-index: 9999;
+    position:absolute;
 }
