@@ -1,7 +1,37 @@
 $(function() {
 
+  function MakeConsole(ops) {
+    $.extend(this,ops);
+    var self=this;
+    this.log=function(t) {
+      $(self.el).append("<p>"+t+"</p>");
+    };
+  };
+
+  var Console=new MakeConsole({el:"#console"});
+
+  function Signal() {
+    var listeners=[];
+
+    var f= function() {
+      var as=arguments;
+      $.map(listeners,function(l) {
+	l.fct.apply(l.obj,as);
+      });
+    };
+
+
+    f.add=function(obj,fct) {
+      listeners.push({obj:obj,fct:fct});
+    };
+    f.remove=function(obj) {
+      listeners=$.grep(listeners,function(l) { return l.obj!=obj;});
+    };
+    return f;
+  };
+
   function Cell() {
-    this.value="<div id='pass'></div>";
+    this.value=".";
     var self=this;
 
     this.get=function() {
@@ -14,6 +44,7 @@ $(function() {
       var r= self.value=="." && !this.monster;
       return r;
     };
+    this.changed=Signal();
   }
 
   function Monster(ops) {
@@ -30,13 +61,21 @@ $(function() {
 	tx+=by.x;
       if(by.y)
 	ty+=by.y;
+      console.log("TXY",tx,ty);
       if(ops.field.posOk(tx,ty)) {
+	console.log("PoS OK");
 	if(ops.field.field(tx,ty).passable()) {
+	  console.log("PASSABlE");
 	  delete ops.field.field(self.x,self.y).monster;
+	  ops.field.field(self.x,self.y).changed();
 
 	  self.x=tx;
 	  self.y=ty;
 	  ops.field.field(self.x,self.y).monster=self;
+	  ops.field.field(self.x,self.y).changed();
+
+	} else {
+	  Console.log("Field not passable");
 	}
       }
     };
@@ -64,10 +103,11 @@ $(function() {
 	var x=i%self.w;
 	var y=Math.floor(i/self.w);
 	if(x==0 || x==self.w-1 || y==0 || y==self.h-1)
-	  cell.value="<div id='wall'></div>";
+	  cell.value="#";
+	//<div id='wall'></div>";
 	fields.push(cell);
       }
-      self.player=monsters.player=new Monster({value:"<div id='player'></div>",type:"player",x:2,y:2,field:self});
+      self.player=monsters.player=new Monster({value:"@",type:"player",x:2,y:2,field:self});
 
     };
 
@@ -81,18 +121,43 @@ $(function() {
     };
   }
 
-  function CellView(cell) {
-    this.html=function() {
-      var h="<div class='cell' id='"+cell.x+"_"+cell.y+"'>"+cell.cell.value+"</div>";
-      if(cell.cell.monster)
-	h+="<div class='cell monster' id='monster_"+cell.x+"_"+cell.y+"'>"+cell.cell.monster.value+"</div>";
+  function CellView(ops) {
+    $.extend(this,ops);
+    var self=this;
+    var _classes={".":"pass","#":"wall","@":"player"};
+    this.cellId=""+self.cell.x+"_"+self.cell.y;
+    this.outer=function() {
+      var h="<div class='cell' id='"+self.cellId+"'><div class='cellinner'></div></div>";
       return h;
+    };
+    this.classFor=function(chr) {
+      return _classes[chr];
+    };
+
+    this.inner=function() {
+      var h="<div class='bg'><div class='"+self.classFor(self.cell.cell.value)+"'></div></div>";
+      if(self.cell.cell.monster)
+	h+="<div class='monster' id='monster_"+self.cell.x+"_"+self.cell.y+"'><div class='"+self.classFor(self.cell.cell.monster.value)+"'></div></div>";
+      return h;
+    };
+
+    this.update=function() {
+      self.innerel.html(self.inner());
     }
+
+    this.el=$(this.outer());
+    //this.update();
+    this.el.appendTo(this.pel);
+    this.el=$("#"+self.cellId,this.pel);
+
+    this.innerel=$(".cellinner",this.el);
+    this.update();
+    self.cell.cell.changed.add(this,function() {self.update();});
   }
 
   function FieldView(ops) {
     this.el="#field";
-    this.cellWidth=16;
+    this.cellWidth=20;
     $.extend(this,ops);
     var self=this;
 
@@ -100,11 +165,11 @@ $(function() {
       $(self.el).empty();
 
       model.eachCell(function(cell) {
-	var html=new CellView(cell).html();
-	var e=$(html);
-	e.css({left:cell.x*self.cellWidth,
-	  top:cell.y*self.cellWidth});
-	e.appendTo(self.el);
+	var cell=new CellView({cell:cell,pel:self.el});
+	var x=cell.cell.x*self.cellWidth,
+	y=cell.cell.y*self.cellWidth;
+      cell.el.css({left:x,
+	top:y});
       });
 
     }
@@ -136,7 +201,7 @@ $(function() {
 	var by=self.keymap[ev.keyCode];
 	if(by) {
 	  self.model.player.moveBy(by);
-	  self.view.init();
+	  //	  self.view.init();
 	}
       });
     };
@@ -144,7 +209,7 @@ $(function() {
   }
 
 
-  var model=new FieldModel();
+  var model=new FieldModel(); //{w:64,h:32});
   model.init();
   var view=new FieldView({model:model});
 
