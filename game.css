@@ -7,6 +7,10 @@ body {
   position:relative;
 }
 
+#console {
+  margin-left:400px;
+}
+
 .cell {
   height: 20px;
   width: 20px;

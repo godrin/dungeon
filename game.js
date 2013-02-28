@@ -84,6 +84,7 @@ $(function() {
   function FieldModel(ops) {
     this.w=16;
     this.h=16;
+
     $.extend(this,ops);
     var self=this;
 
@@ -98,15 +99,29 @@ $(function() {
     };
 
     this.init=function() {
+      if(ops.field && ops.field.length>0) {
+	this.h=ops.field.length;
+	this.w=ops.field[0].length;
+      }
+
+
+
       for(var i=0;i<self.w*self.h;i++) {
 	var cell=new Cell();
 	var x=i%self.w;
 	var y=Math.floor(i/self.w);
-	if(x==0 || x==self.w-1 || y==0 || y==self.h-1)
+	if(self.field) {
+	  var v=ops.field[y][x];
+	  if(v=="@") {
+	   // self.player=monsters.player=new Monster({value:"@",type:"player",x:x,y:y,field:self});
+	  }else
+
+	    cell.value=v;
+	} else if(x==0 || x==self.w-1 || y==0 || y==self.h-1)
 	  cell.value="#";
-	//<div id='wall'></div>";
 	fields.push(cell);
       }
+      if(!self.player)
       self.player=monsters.player=new Monster({value:"@",type:"player",x:2,y:2,field:self});
 
     };
@@ -209,7 +224,16 @@ $(function() {
   }
 
 
-  var model=new FieldModel(); //{w:64,h:32});
+  var model=new FieldModel({
+    field:[
+    "#####################",
+      "#......##...........#",
+      "#@####....########..#",
+      "###..########.......#",
+      "#<.............######",
+      "#####################"
+    ]
+  }); //{w:64,h:32});
   model.init();
   var view=new FieldView({model:model});
 
