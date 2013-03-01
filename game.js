@@ -41,7 +41,7 @@ $(function() {
       return self.value;
     };
     this.passable=function() {
-      var r= self.value=="." && !this.monster;
+      var r= (self.value=="." || self.value=="<" || self.value==">") && !this.monster;
       return r;
     };
     this.changed=Signal();
@@ -110,19 +110,22 @@ $(function() {
 	var cell=new Cell();
 	var x=i%self.w;
 	var y=Math.floor(i/self.w);
+	var v=ops.field[y][x];
 	if(self.field) {
-	  var v=ops.field[y][x];
 	  if(v=="@") {
-	   // self.player=monsters.player=new Monster({value:"@",type:"player",x:x,y:y,field:self});
+	    // self.player=monsters.player=new Monster({value:"@",type:"player",x:x,y:y,field:self});
 	  }else
 
 	    cell.value=v;
 	} else if(x==0 || x==self.w-1 || y==0 || y==self.h-1)
 	  cell.value="#";
 	fields.push(cell);
+	if(v=="@")
+	 self.player=monsters.player=new Monster({value:"@",type:"player",x:x,y:y,field:self});
+
       }
       if(!self.player)
-      self.player=monsters.player=new Monster({value:"@",type:"player",x:2,y:2,field:self});
+	self.player=monsters.player=new Monster({value:"@",type:"player",x:2,y:2,field:self});
 
     };
 
