@@ -175,7 +175,7 @@ $(function() {
 
   function FieldView(ops) {
     this.el="#field";
-    this.cellWidth=20;
+    this.cellWidth=60;
     $.extend(this,ops);
     var self=this;
 

@@ -12,8 +12,8 @@ body {
 }
 
 .cell {
-  height: 20px;
-  width: 20px;
+  height: 60px;
+  width: 60px;
   background-size:cover;
   display:block;
   position:absolute;
@@ -22,11 +22,13 @@ body {
 .cellinner {
   position:relative;
   background: rgb(200,50,40);
+  width:100%;
+  height:100%;
 }
 
 .pass {
-  height:20px;
-  width:20px;
+  height:100%;
+  width:100%;
   background-position: 50px 5px;
   opacity:0.5;
   background-image:url('bg_01.png');
@@ -40,8 +42,8 @@ body {
 }
 
 .player {
-  height:30px;
-  width:30px;
+  height:80px;
+  width:80px;
   background-image:url('player.png');
   float:right;
   background-size:cover;
