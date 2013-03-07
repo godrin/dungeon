@@ -1,11 +1,11 @@
-
 function CellView(ops) {
 	$.extend(this, ops);
 	var self = this;
 	var _classes = {
 		"." : "pass",
 		"#" : "wall",
-		"@" : "player"
+		"@" : "player",
+		"<" : "stairs_down"
 	};
 	this.cellId = "" + self.cell.x + "_" + self.cell.y;
 	this.outer = function() {

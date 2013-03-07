@@ -2,7 +2,7 @@ function PlayerView(ops) {
 	var self = this;
 
 	$.extend(this, ops);
-	self.player.changed.add(self, function() {
+	this.update = function() {
 		var player = $(".player");
 
 		var playerCell = player.closest(".cell");
@@ -18,9 +18,12 @@ function PlayerView(ops) {
 		var tx = -offset.left + centerx;
 		var ty = -offset.top + centery;
 		field.stop(true, false);
+		console.log("TXXXXXX",tx,ty);
 		field.animate({
 			left : tx,
 			top : ty
-		},300);
-	});
+		}, 300);
+	};
+
+	self.player.changed.add(self, self.update);
 }
