@@ -22,6 +22,8 @@ $(function() {
   var view=new FieldView({model:model});
 
   view.init();
+  
+  var playerView=new PlayerView({player:model.player});
 
   var controller=new Controller({model:model,view:view});
   controller.init();

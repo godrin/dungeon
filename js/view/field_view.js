@@ -7,9 +7,9 @@ function FieldView(ops) {
 	this.init = function() {
 		$(self.el).empty();
 
-		self.model.eachCell(function(cell) {
+		self.model.eachCell(function(pcell) {
 			var cell = new CellView({
-				cell : cell,
+				cell : pcell,
 				pel : self.el
 			});
 			var x = cell.cell.x * self.cellWidth, y = cell.cell.y
@@ -20,6 +20,5 @@ function FieldView(ops) {
 			});
 		});
 
-	}
-
+	};
 }

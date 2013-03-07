@@ -3,9 +3,20 @@ body {
   background-color:black;
 }
 
+
+#field_container {
+ position:absolute;
+ left:10px;
+ right:10px;
+ bottom:10px;
+ top:10px;
+ overflow:hidden;	
+}
+
 #field {
-  margin:20px;
   position:relative;
+  left:0px;
+  top:0px;
 }
 
 #console {

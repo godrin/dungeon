@@ -1,63 +1,12 @@
-
 function Monster(ops) {
 	$.extend(this, ops);
 	var self = this;
 
 	ops.field.field(self.x, self.y).monster = this;
 
-	function getRange(x, y) {
-		var positions = [];
-		var i, j;
-		for (i = x - 3; i <= x + 3; i++) {
-			for (j = y - 3; j <= y + 3; j++) {
-				positions.push({
-					x : i,
-					y : j
-				});
-			}
-		}
-		return positions;
-	}
+	this.changed = Signal();
 
 	this.moveBy = function(by) {
-		function MakeConsole(ops) {
-			$.extend(this, ops);
-			var self = this;
-			this.log = function(t) {
-				$(self.el).append("<p>" + t + "</p>");
-			};
-		}
-		;
-
-		var Console = new MakeConsole({
-			el : "#console"
-		});
-
-		function Signal() {
-			var listeners = [];
-
-			var f = function() {
-				var as = arguments;
-				$.map(listeners, function(l) {
-					l.fct.apply(l.obj, as);
-				});
-			};
-
-			f.add = function(obj, fct) {
-				listeners.push({
-					obj : obj,
-					fct : fct
-				});
-			};
-			f.remove = function(obj) {
-				listeners = $.grep(listeners, function(l) {
-					return l.obj != obj;
-				});
-			};
-			return f;
-		}
-		;
-
 		var tx = self.x;
 		var ty = self.y;
 		if (by.x)
@@ -70,7 +19,7 @@ function Monster(ops) {
 			if (ops.field.field(tx, ty).passable()) {
 				console.log("PASSABlE");
 				delete ops.field.field(self.x, self.y).monster;
-				ops.field.field(self.x, self.y).changed();
+				var oldx = self.x, oldy = self.y;
 
 				self.x = tx;
 				self.y = ty;
@@ -81,7 +30,9 @@ function Monster(ops) {
 						field.changed();
 					}
 				});
-				ops.field.field(self.x, self.y).changed();
+				ops.field.fieldChanged(oldx, oldy, self);
+				ops.field.fieldChanged(self.x, self.y, self);
+				self.changed();
 
 			} else {
 				Console.log("Field not passable");
