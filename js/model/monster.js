@@ -9,8 +9,18 @@ function Monster(ops) {
 	this.moveBy = function(by) {
 		var tx = self.x;
 		var ty = self.y;
-		if (by.x)
+		if (by.x) {
+			console.log('moved by', by.x);
+			if (by.x < 0) {
+				console.log("move left");
+				$('.player').css("background-image", "url(playerl.png)");
+			}
+			else {
+				console.log("move right");
+				$('.player').css("background-image", "url(player.png)");
+			} 
 			tx += by.x;
+		}
 		if (by.y)
 			ty += by.y;
 		console.log("TXY", tx, ty);

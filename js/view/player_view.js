@@ -19,6 +19,7 @@ function PlayerView(ops) {
 		var ty = -offset.top + centery;
 		field.stop(true, false);
 		console.log("TXXXXXX",tx,ty);
+		console.log("offleft: ",offset.left);
 		field.animate({
 			left : tx,
 			top : ty
