@@ -11,7 +11,7 @@ function Monster(ops) {
 		var ty = self.y;
 		if (by.x) {
 			console.log('moved by', by.x);
-			if (by.x < 0) {
+			if (by.x == '-1') {
 				console.log("move left");
 				$('.player').css("background-image", "url(playerl.png)");
 			}
@@ -30,7 +30,6 @@ function Monster(ops) {
 				console.log("PASSABlE");
 				delete ops.field.field(self.x, self.y).monster;
 				var oldx = self.x, oldy = self.y;
-
 				self.x = tx;
 				self.y = ty;
 				ops.field.field(self.x, self.y).monster = self;
@@ -45,7 +44,7 @@ function Monster(ops) {
 				self.changed();
 
 			} else {
-				Console.log("Field not passable");
+				console.log("Field not passable");
 			}
 		}
 	};
