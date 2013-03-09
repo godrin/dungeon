@@ -1,0 +1,82 @@
+body {
+  font-family:fixed;
+  background-color:black;
+}
+
+
+#field_container {
+ position:absolute;
+ left:10px;
+ right:10px;
+ bottom:10px;
+ top:10px;
+ overflow:hidden;	
+}
+
+#field {
+  position:relative;
+  left:0px;
+  top:0px;
+}
+
+#console {
+  margin-left:400px;
+}
+
+.cell {
+  height: 60px;
+  width: 60px;
+  background-size:cover;
+  display:block;
+  position:absolute;
+}
+
+.cellinner {
+  position:relative;
+  /*background: rgb(200,50,40);*/
+  width:100%;
+  height:100%;
+}
+
+.pass {
+  height:100%;
+  width:100%;
+  background-size:cover;
+  background-image:url('earth.png');
+}
+
+.wall {
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-image:url('wall.png');
+  background-position:center;
+}
+
+.stairs_down {
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-image:url('stairs_down.png');
+  background-position:center;
+	
+}
+
+.player {
+  height:80px;
+  width:80px;
+  background-image:url('player.png');
+  float:right;
+  background-size:cover;
+  z-index: 9999;
+  position:absolute;
+  top:-20px;
+}
+
+.monster {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+}
