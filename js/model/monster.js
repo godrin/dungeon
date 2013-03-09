@@ -13,11 +13,13 @@ function Monster(ops) {
 			console.log('moved by', by.x);
 			if (by.x == '-1') {
 				console.log("move left");
-				$('.player').css("background-image", "url(playerl.png)");
+				css = "playerl.png";
+				$('.player').css("background-image", "url("+css+")");
 			}
 			else {
 				console.log("move right");
-				$('.player').css("background-image", "url(player.png)");
+				css = "player.png";
+				$('.player').css("background-image", "url("+css+")");
 			} 
 			tx += by.x;
 		}
@@ -33,6 +35,7 @@ function Monster(ops) {
 				self.x = tx;
 				self.y = ty;
 				ops.field.field(self.x, self.y).monster = self;
+				console.log(css);
 				$.map(getRange(self.x, self.y), function(pos) {
 					var field = ops.field.field(pos.x, pos.y);
 					if (field) {
@@ -42,7 +45,7 @@ function Monster(ops) {
 				ops.field.fieldChanged(oldx, oldy, self);
 				ops.field.fieldChanged(self.x, self.y, self);
 				self.changed();
-
+				$('.player').css("background-image", "url("+css+")");
 			} else {
 				console.log("Field not passable");
 			}

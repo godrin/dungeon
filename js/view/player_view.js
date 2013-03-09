@@ -25,6 +25,5 @@ function PlayerView(ops) {
 			top : ty
 		}, 300);
 	};
-
 	self.player.changed.add(self, self.update);
 }
