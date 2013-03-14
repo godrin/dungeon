@@ -11,6 +11,8 @@ function createLevel(ops) {
 		res.push([].concat(s));
 
 	function validPos(p, distanceToBorder) {
+		if(!p)
+			return false;
 		if (!distanceToBorder)
 			distanceToBorder = 0;
 		return (p.x >= distanceToBorder && p.x < w - distanceToBorder
@@ -95,11 +97,14 @@ function createLevel(ops) {
 	}
 
 	function neighbors(p) {
-		var ns=[];
-		for(var x=-1;x<2;x++)
-			for(var y=-1;y<2;y++) {
-				var n={x:p.x+x,y:p.y+y};
-				if(validPos(n))
+		var ns = [];
+		for ( var x = -1; x < 2; x++)
+			for ( var y = -1; y < 2; y++) {
+				var n = {
+					x : p.x + x,
+					y : p.y + y
+				};
+				if (validPos(n))
 					ns.push(n);
 			}
 		return ns;
@@ -111,11 +116,31 @@ function createLevel(ops) {
 		});
 	}
 	function opposingWalls(p) {
-		return ((getdata({x:p.x-1,y:p.y})=="#" && getdata({x:p.x+1,y:p.y})=="#" && 
-				(getdata({x:p.x,y:p.y-1})=="." && getdata({x:p.x,y:p.y+1})==".")))
-				||
-				((getdata({x:p.x-1,y:p.y})=="." && getdata({x:p.x+1,y:p.y})=="." && 
-						(getdata({x:p.x,y:p.y-1})=="#" && getdata({x:p.x,y:p.y+1})=="#")));
+		return ((getdata({
+			x : p.x - 1,
+			y : p.y
+		}) == "#" && getdata({
+			x : p.x + 1,
+			y : p.y
+		}) == "#" && (getdata({
+			x : p.x,
+			y : p.y - 1
+		}) == "." && getdata({
+			x : p.x,
+			y : p.y + 1
+		}) == "."))) || ((getdata({
+			x : p.x - 1,
+			y : p.y
+		}) == "." && getdata({
+			x : p.x + 1,
+			y : p.y
+		}) == "." && (getdata({
+			x : p.x,
+			y : p.y - 1
+		}) == "#" && getdata({
+			x : p.x,
+			y : p.y + 1
+		}) == "#")));
 	}
 
 	function randomDoor(x, y, w, h, trials) {
@@ -123,7 +148,13 @@ function createLevel(ops) {
 			trials = 400;
 		while (trials > 0) {
 			var p = randomPoint(x, y, w, h);
-			if (getdata(p)=="." && opposingWalls(p) && freeNeighbors(p).length > 3) // door itself and two neighboring cells
+			if (getdata(p) == "." && opposingWalls(p)
+					&& freeNeighbors(p).length > 3) // door
+				// itself
+				// and
+				// two
+				// neighboring
+				// cells
 				setdata(p, "+");
 			trials -= 1;
 		}
@@ -255,6 +286,9 @@ function createLevel(ops) {
 	setdata(p = randomFreePos(), "@");
 	setdata(d = randomFreePos(), "<");
 	setdata(u = randomFreePos(), ">");
+	make(30, function() {
+		setdata(randomFreePos(), "$");
+	});
 
 	make(20, function() {
 		randomDoor(0, 0, w, h);

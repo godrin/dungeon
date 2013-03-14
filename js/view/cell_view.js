@@ -5,7 +5,8 @@ function CellView(ops) {
 		"." : "pass",
 		"#" : "wall",
 		"@" : "player",
-		"<" : "stairs_down"
+		"<" : "stairs_down",
+		"$" : "gold"
 	};
 	this.cellId = "" + self.cell.x + "_" + self.cell.y;
 	this.outer = function() {

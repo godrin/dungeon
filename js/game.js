@@ -15,11 +15,17 @@ $(function() {
 	"#@..........#########", //
 	"#<###################" ];
 
-field=createLevel({w:64,h:32});
-	
+	field = createLevel({
+		w : 64,
+		h : 32
+	});
+
+	var state = new GameStateModel();
+
 	var model = new FieldModel({
-		field : field
-	}); // {w:64,h:32});
+		field : field,
+		state : state
+	});
 	model.init();
 	var view = new FieldView({
 		model : model
@@ -35,6 +41,13 @@ field=createLevel({w:64,h:32});
 		model : model,
 		view : view
 	});
+	var stateView = new StateView({
+		el : "#stateView",
+		model : state
+	});
+	
+	stateView.view();
+
 	controller.init();
 	// alert("X");
 	setTimeout(function() {
