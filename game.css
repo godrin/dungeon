@@ -81,7 +81,7 @@ body {
 	
 }
 
-.player {
+.monster.player {
   height:80px;
   width:80px;
   background-image:url('player.png');

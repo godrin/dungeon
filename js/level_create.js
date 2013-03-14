@@ -290,9 +290,15 @@ function createLevel(ops) {
 		setdata(randomFreePos(), "$");
 	});
 
+	make(5, function() {
+		setdata(randomFreePos(), "O");
+	});
+
 	make(20, function() {
 		randomDoor(0, 0, w, h);
 	});
+	
+	
 
 	var poss = [ p, d, u ];
 
