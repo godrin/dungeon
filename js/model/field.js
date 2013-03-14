@@ -69,10 +69,10 @@ function FieldModel(ops) {
 					y : y,
 					field : self
 				});
-			else if (v == "$")
+			else if (v == "O")
 				self.ghoul = monsters.ghoul = new Monster({
-					value : "$",
-					type : "ghoul",
+					value : "O",
+					type : "ogre",
 					x : x,
 					y : y,
 					field : self
