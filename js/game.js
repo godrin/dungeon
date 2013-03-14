@@ -16,8 +16,8 @@ $(function() {
 	"#<###################" ];
 
 	field = createLevel({
-		w : 64,
-		h : 64
+		w : 32,
+		h : 32
 	});
 
 	var state = new GameStateModel();
