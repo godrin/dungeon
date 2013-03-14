@@ -1,5 +1,5 @@
 function Controller(ops) {
-
+/*
 	this.keymap = {
 		104 : {
 			x : -1
@@ -40,7 +40,7 @@ function Controller(ops) {
 			z : -1
 		}
 	};
-
+*/
 	this.keymap = {
 		38 : {
 			y : -1
