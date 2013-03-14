@@ -36,7 +36,7 @@ function CellView(ops) {
 		if (!self.innerelcache) {
 			self.innerelcache = $(self.innerelid);
 			if (self.innerelcache.length == 0)
-				self.innerelcache = null
+				self.innerelcache = null;
 		}
 		return self.innerelcache;
 	};
