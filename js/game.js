@@ -47,7 +47,12 @@ $(function() {
 		el : "#stateView",
 		model : state
 	});
-	
+	var welcomeView = new WelcomeView({
+		el : "#welcomeView"
+	});
+
+	welcomeView.show();
+
 	stateView.view();
 
 	controller.init();
