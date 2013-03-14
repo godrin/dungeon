@@ -9,7 +9,7 @@ function Cell() {
 		return self.value;
 	};
 	this.passable = function() {
-		var r = (self.value == "." || self.value == "<" || self.value == ">")
+		var r = (self.value == "." || self.value == "<" || self.value == ">" || self.value=="+")
 				&& !this.monster;
 		return r;
 	};
