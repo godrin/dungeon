@@ -66,6 +66,14 @@ function FieldModel(ops) {
 					y : y,
 					field : self
 				});
+			else if (v == "$")
+				self.ghoul = monsters.ghoul = new Monster({
+					value : "$",
+					type : "ghoul",
+					x : x,
+					y : y,
+					field : self
+				});
 
 		}
 		if (!self.player)

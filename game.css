@@ -73,6 +73,19 @@ body {
   top:-20px;
 }
 
+.ghoul {
+  height:80px;
+  width:80px;
+  opacitiy:1;
+  background-image:url('ghoul1.png');
+  float:right;
+  background-size:cover;
+  z-index: 9999;
+  position:absolute;
+  top:-20px;
+	
+}
+
 .monster {
   position:absolute;
   top:0;
