@@ -41,6 +41,8 @@ function FieldModel(ops) {
 			this.h = ops.field.length;
 			this.w = ops.field[0].length;
 		}
+		
+		//var html="";
 
 		for ( var i = 0; i < self.w * self.h; i++) {
 			var cell = new Cell();
@@ -58,6 +60,7 @@ function FieldModel(ops) {
 			} else if (x == 0 || x == self.w - 1 || y == 0 || y == self.h - 1)
 				cell.value = "#";
 			fields.push(cell);
+			//html+=cell.html();
 			if (v == "@")
 				self.player = monsters.player = new Monster({
 					value : "@",
@@ -68,6 +71,7 @@ function FieldModel(ops) {
 				});
 
 		}
+		//$(self.el).html(html);
 		if (!self.player)
 			self.player = monsters.player = new Monster({
 				value : "@",

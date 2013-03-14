@@ -9,8 +9,9 @@ function CellView(ops) {
 	};
 	this.cellId = "" + self.cell.x + "_" + self.cell.y;
 	this.outer = function() {
-		var h = "<div class='cell' id='" + self.cellId
-				+ "'><div class='cellinner'></div></div>";
+		var h = "<div class='cell' style='left:" + self.x + "px;top:" + self.y
+				+ "px;' id='" + self.cellId + "'><div class='cellinner'>"
+				+ this.inner() + "</div></div>";
 		return h;
 	};
 	this.classFor = function(chr) {
@@ -28,20 +29,36 @@ function CellView(ops) {
 		return h;
 	};
 
-	this.update = function() {
-		self.innerel.html(self.inner());
-		self.innerel.css({
-			opacity : self.cell.cell.opacity
-		});
+	this.innerel = function() {
+		if (!self.innerelcache) {
+			self.innerelcache = $(self.innerelid);
+			if (self.innerelcache.length == 0)
+				self.innerelcache = null
+		}
+		return self.innerelcache;
 	};
 
-	this.el = $(this.outer());
-	// this.update();
-	this.el.appendTo(this.pel);
-	this.el = $("#" + self.cellId, this.pel);
+	this.update = function() {
+		if (self.innerel()) {
+			self.innerel().html(self.inner());
 
-	this.innerel = $(".cellinner", this.el);
-	this.update();
+			self.innerel().css({
+				opacity : self.cell.cell.opacity
+			}, "slow");
+		}
+	};
+
+	this.html = function() {
+		return self.outer();
+	};
+
+	/*
+	 * this.el = $(this.outer()); // this.update(); this.el.appendTo(this.pel);
+	 * this.el = $("#" + self.cellId, this.pel);
+	 * 
+	 * this.innerel = $(".cellinner", this.el); this.update();
+	 */
+	this.innerelid = "#"+this.cellId + " .cellinner";
 	self.cell.cell.changed.add(this, function() {
 		self.update();
 	});
