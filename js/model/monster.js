@@ -35,7 +35,7 @@ function Monster(ops) {
 				self.x = tx;
 				self.y = ty;
 				ops.field.field(self.x, self.y).monster = self;
-				console.log(css);
+				//console.log(css);
 				$.map(getRange(self.x, self.y), function(pos) {
 					var field = ops.field.field(pos.x, pos.y);
 					if (field) {

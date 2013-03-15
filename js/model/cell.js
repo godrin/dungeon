@@ -1,6 +1,8 @@
 function Cell() {
 	this.value = ".";
 	var self = this;
+	
+	this.items=[];
 
 	this.get = function() {
 		if (self.monster) {

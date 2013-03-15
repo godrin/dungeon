@@ -41,7 +41,8 @@ $(function() {
 
 	var controller = new Controller({
 		model : model,
-		view : view
+		view : view,
+		containerEl:"#field_container"
 	});
 	var stateView = new StateView({
 		el : "#stateView",

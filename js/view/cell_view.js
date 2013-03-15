@@ -63,13 +63,6 @@ function CellView(ops) {
 	this.html = function() {
 		return self.outer();
 	};
-
-	/*
-	 * this.el = $(this.outer()); // this.update(); this.el.appendTo(this.pel);
-	 * this.el = $("#" + self.cellId, this.pel);
-	 * 
-	 * this.innerel = $(".cellinner", this.el); this.update();
-	 */
 	this.innerelid = "#" + this.cellId + " .cellinner";
 	self.cell.cell.changed.add(this, function() {
 		self.update();

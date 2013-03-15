@@ -66,6 +66,34 @@ function Controller(ops) {
 				// self.view.init();
 			}
 		});
+
+		$(self.containerEl).unbind("click");
+		$(self.containerEl).bind(
+				"click",
+				function(e) {
+					var dx = e.pageX - $(self.containerEl).offset().left
+							- $(self.containerEl).width()/2;
+					var dy = e.pageY - $(self.containerEl).offset().top
+							- $(self.containerEl).height()/2;
+					var dx2 = dx * dx;
+					var dy2 = dy * dy;
+					if (dx2 + dy2 > 2000) {
+						if (dx2 > dy2 + 400) {
+							self.model.player.moveBy({
+								y : 0,
+								x : (dx < 0 ? -1 : 1)
+							});
+						}
+						if(dy2 > dx2 + 400) {
+							self.model.player.moveBy({
+								x : 0,
+								y : (dy < 0 ? -1 : 1)
+							});
+						}
+						console.log(dx, dy, dx / dy);
+					}
+				});
+
 	};
 
 }

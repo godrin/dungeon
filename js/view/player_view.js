@@ -4,6 +4,15 @@ function PlayerView(ops) {
 	$.extend(this, ops);
 	this.update = function() {
 		var player = $(".player");
+		
+		var playerOffset=player.offset();
+		var dx=playerOffset.left-$(window).width()/2;
+		var dy=playerOffset.top-$(window).height()/2;
+		var dw=$(window).width()/4;
+		var dh=$(window).height()/4;
+		console.log("DDD",dx,dy,dw,dh);
+		if(dx*dx<dw*dw && dy*dy<dh*dh)
+			return;
 
 		var playerCell = player.closest(".cell");
 		var field_container = $("#field_container");

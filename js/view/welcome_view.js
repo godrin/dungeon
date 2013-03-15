@@ -3,7 +3,7 @@ function WelcomeView(ops) {
 	$.extend(this, ops);
 
 	this.show = function() {
-		$(self.el).show("slow");
+		$(self.el).css({opacity:0}).show("slow").animate({opacity:1},"slow");
 		$("div", self.el).unbind("click");
 		$("div", self.el).bind("click", function() {
 			self.hide();
