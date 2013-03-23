@@ -101,6 +101,17 @@ body {
 	top: -20px;
 }
 
+.monster.dwarf {
+	height: 60px;
+	width: 30px;
+	opacitiy: 1;
+	background-image: url('dwarf.png');
+	float: right;
+	background-size: cover;
+	z-index: 9999;
+	position: absolute;
+}
+
 .monster {
 	position: absolute;
 	top: 0;

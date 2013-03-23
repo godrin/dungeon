@@ -293,7 +293,11 @@ function createLevel(ops) {
 	make(5, function() {
 		setdata(randomFreePos(), "O");
 	});
-
+	
+	make(7, function() {
+		setdata(randomFreePos(), "D");
+	});
+	
 	make(20, function() {
 		randomDoor(0, 0, w, h);
 	});

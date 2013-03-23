@@ -77,6 +77,14 @@ function FieldModel(ops) {
 					y : y,
 					field : self
 				});
+			else if (v == "D")
+				self.dwarf = monsters.dwarf = new Monster({
+					value : "D",
+					type : "dwarf",
+					x : x,
+					y : y,
+					field : self
+				});
 
 		}
 		//$(self.el).html(html);
