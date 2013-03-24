@@ -99,6 +99,7 @@ body {
 	z-index: 9999;
 	position: absolute;
 	top: -20px;
+	left:15px;
 }
 
 .monster.dwarf {
@@ -107,6 +108,7 @@ body {
 	opacitiy: 1;
 	background-image: url('dwarf.png');
 	float: right;
+	left:15px;
 	background-size: cover;
 	z-index: 9999;
 	position: absolute;
