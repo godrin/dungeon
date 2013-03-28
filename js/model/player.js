@@ -1,16 +1,23 @@
-var Monster=Toolbox.Base.extend({
+var Monster=Backbone.Model.extend({
 
   constructor:function(ops) {
-  //alert("X");
+  Monster.__super__.constructor(ops);
+    //alert("X");
     //$.extend(this,ops);
     console.log("OPS",ops);
     _.extend(this,ops);
     this.field.field(this.x, this.y).monster = this;
   },
   changed : Signal(),
+  myCell:function() {
+    return this.getCell(this);
+  },
+  getCell:function(pos) {
+    return this.field.field(pos.x,pos.y);
+  },
 
   moveBy : function(by) {
-  var self=this;
+    var self=this;
     var tx = self.x;
     var ty = self.y;
     if (by.x) {
@@ -29,10 +36,10 @@ var Monster=Toolbox.Base.extend({
 	var oldx = self.x, oldy = self.y;
 	self.x = tx;
 	self.y = ty;
-	this.field.field(self.x, self.y).monster = self;
+	this.myCell().monster = self;
 	//console.log(css);
 	$.map(getRange(self.x, self.y), function(pos) {
-	  var field = self.field.field(pos.x, pos.y);
+	  var field = self.getCell(pos); //field.field(pos.x, pos.y);
 	  if (field) {
 	    field.changed();
 	  }
@@ -44,11 +51,20 @@ var Monster=Toolbox.Base.extend({
 	console.log("Field not passable");
       }
     }
+    this.trigger("move");
   }
 });
 
 var Player=Monster.extend({
-   
+  constructor:function(ops) {
+    Player.__super__.constructor(ops); 
+    console.log("PLAYER init",this);
+    this.bind("move",this.moved,this);
+  },
+  moved:function() {
+  var cell=this.myCell();
+  console.log("Moved to cell",cell);
+  }
 });
 
 
