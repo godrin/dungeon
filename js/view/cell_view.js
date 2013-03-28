@@ -7,7 +7,8 @@ function CellView(ops) {
 		"@" : "player",
 		"<" : "stairs_down",
 		"O" : "ogre",
-		"$" : "gold"
+		"$" : "gold",
+		"D" : "dwarf"
 
 	};
 	this.cellId = "" + self.cell.x + "_" + self.cell.y;

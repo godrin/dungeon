@@ -17,7 +17,7 @@ function FieldModel(ops) {
 				var f = self.field(pos.x, pos.y);
 				if (f) {
 					var dx = (byWhom.x - pos.x), dy = (byWhom.y - pos.y);
-					var op = 1 - Math.sqrt(dx * dx + dy * dy) / 3;
+					var op = 1.6 - Math.sqrt(dx * dx + dy * dy) / 3;
 					if (op > 1)
 						op = 1;
 					if (op < 0)
@@ -73,6 +73,14 @@ function FieldModel(ops) {
 				self.ghoul = monsters.ghoul = new Monster({
 					value : "O",
 					type : "ogre",
+					x : x,
+					y : y,
+					field : self
+				});
+			else if (v == "D")
+				self.dwarf = monsters.dwarf = new Monster({
+					value : "D",
+					type : "dwarf",
 					x : x,
 					y : y,
 					field : self
