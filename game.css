@@ -95,7 +95,7 @@ body {
   background-image: url('playerl.png');
 }
 
-.monster.ogre {
+.intem.ogre {
 	opacitiy: 1;
 	background-image: url('ogre.png');
 	float: right;
