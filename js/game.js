@@ -1,64 +1,64 @@
 $(function() {
-	var field = [ //
-	"#####################", //
-	"#......##...........#", //
-	"#.####....########..#", //
-	"###..########.......#", //
-	"#..............######", //
-	"#....######..########", //
-	"####......####......#", //
-	"#.#######.......###.#", //
-	"#.#####...#######...#", //
-	"#.###...#######...###", //
-	"#.....#####.........#", // 
-	"########....#########", //
-	"#@..........#########", //
-	"#<###################" ];
+  var field = [ //
+    "#####################", //
+    "#......##...........#", //
+    "#.####....########..#", //
+    "###..########.......#", //
+    "#..............######", //
+    "#....######..########", //
+    "####......####......#", //
+    "#.#######.......###.#", //
+    "#.#####...#######...#", //
+    "#.###...#######...###", //
+    "#.....#####.........#", // 
+    "########....#########", //
+    "#@..........#########", //
+  "#<###################" ];
 
-	field = createLevel({
-		w : 32,
-		h : 32
-	});
+  field = createLevel({
+    w : 32,
+    h : 32
+  });
 
-	var state = new GameStateModel();
+  var state = new GameStateModel();
 
-	var model = new FieldModel({
+  var model = new FieldModel({
 
-		field : field,
-		state : state
-	});
+    field : field,
+    state : state
+  });
 
-	model.init();
-	var view = new FieldView({
-		model : model
-	});
+  model.init();
+  var view = new FieldView({
+    model : model
+  });
 
-	view.init();
+  view.init();
 
-	var playerView = new PlayerView({
-		player : model.player
-	});
+  var playerView = new PlayerView({
+    player : model.player
+  });
 
-	var controller = new Controller({
-		model : model,
-		view : view,
-		containerEl:"#field_container"
-	});
-	var stateView = new StateView({
-		el : "#stateView",
-		model : state
-	});
-	var welcomeView = new WelcomeView({
-		el : "#welcomeView"
-	});
+  var controller = new Controller({
+    model : model,
+    view : view,
+    containerEl:"#field_container"
+  });
+  var stateView = new StateView({
+    el : "#stateView",
+    model : state
+  });
+  var welcomeView = new WelcomeView({
+    el : "#welcomeView"
+  });
 
-	welcomeView.show();
+  welcomeView.show();
 
-	stateView.view();
+  stateView.view();
 
-	controller.init();
-	// alert("X");
-	setTimeout(function() {
-		playerView.update();
-	}, 100);
+  controller.init();
+  // alert("X");
+  setTimeout(function() {
+    playerView.update();
+  }, 100);
 });

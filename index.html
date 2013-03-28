@@ -1,44 +1,48 @@
 <html>
-<head>
-<script src='jquery-1.7.min.js'></script>
-<script src='mustache.js'></script>
-<script src='js/basic.js'></script>
-<script src='js/model/cell.js'></script>
-<script src='js/model/field.js'></script>
-<script src='js/model/monster.js'></script>
-<script src='js/model/game_state.js'></script>
-<script src='js/level_create.js'></script>
-<script src='js/view/cell_view.js'></script>
-<script src='js/view/field_view.js'></script>
-<script src='js/view/player_view.js'></script>
-<script src='js/view/state_view.js'></script>
-<script src='js/view/welcome_view.js'></script>
-<script src='js/controller.js'></script>
-<script src='js/game.js'></script>
-<link type='text/css' rel='stylesheet' href='game.css'></link>
+  <head>
+    <script src='jquery-1.7.min.js'></script>
+    <script src='mustache.js'></script>
+    <script src='underscore-min.js'></script>
+    <script src='backbone.js'></script>
+    <script src='toolbox.js'></script>
+    <script src='js/basic.js'></script>
+    <script src='js/model/cell.js'></script>
+    <script src='js/model/field.js'></script>
+    <script src='js/model/monster.js'></script>
+    <script src='js/model/player.js'></script>
+    <script src='js/model/game_state.js'></script>
+    <script src='js/level_create.js'></script>
+    <script src='js/view/cell_view.js'></script>
+    <script src='js/view/field_view.js'></script>
+    <script src='js/view/player_view.js'></script>
+    <script src='js/view/state_view.js'></script>
+    <script src='js/view/welcome_view.js'></script>
+    <script src='js/controller.js'></script>
+    <script src='js/game.js'></script>
+    <link type='text/css' rel='stylesheet' href='game.css'></link>
 
 
-<script type='text/html' id='stateViewTemplate'>
-<div>
+    <script type='text/html' id='stateViewTemplate'>
       <div>
-        Health {{health}}
-      </div>
-      <div>
-        Gold {{gold}}
-      </div>
-      <div>
-        Exp {{exp}}
-      </div>
-</div>
-</script>
-</head>
-<body>
-	<div id='field_container'>
-		<div id='field'></div>
+	<div>
+	  Health {{health}}
 	</div>
-	<div id='console'></div>
-	<div id='stateView'></div>
-	<div id='welcomeView'>Welcome to the dUnGeOn
-	<div>start</div></div>
-</body>
+	<div>
+	  Gold {{gold}}
+	</div>
+	<div>
+	  Exp {{exp}}
+	</div>
+      </div>
+    </script>
+  </head>
+  <body>
+    <div id='field_container'>
+      <div id='field'></div>
+    </div>
+    <div id='console'></div>
+    <div id='stateView'></div>
+    <div id='welcomeView'>Welcome to the dUnGeOn
+      <div>start</div></div>
+  </body>
 </html>

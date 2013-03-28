@@ -1,97 +1,102 @@
 body {
-	font-family: fixed;
-	background-color: black;
+  font-family: fixed;
+  background-color: black;
 }
 
 #stateView {
-	position: absolute;
-	top: 10px;
-	left: 10px;
-	color: white;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: white;
 }
 
 #field_container {
-	position: absolute;
-	left: 10px;
-	right: 10px;
-	bottom: 10px;
-	top: 10px;
-	overflow: hidden;
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  top: 10px;
+  overflow: hidden;
 }
 
 #field {
-	position: relative;
-	left: 0px;
-	top: 0px;
+  position: relative;
+  left: 0px;
+  top: 0px;
 }
 
 #console {
-	margin-left: 400px;
+  margin-left: 400px;
 }
 
 .cell {
-	height: 128px;
-	width: 128px;
-	background-size: cover;
-	display: block;
-	position: absolute;
+  height: 128px;
+  width: 128px;
+  background-size: cover;
+  display: block;
+  position: absolute;
 }
 
 .cellinner {
-	position: relative;
-	/*background: rgb(200,50,40);*/
-	width: 100%;
-	height: 100%;
+  position: relative;
+  /*background: rgb(200,50,40);*/
+  width: 100%;
+  height: 100%;
 }
 
 .pass {
-	height: 100%;
-	width: 100%;
-	background-size: cover;
-	background-image: url('earth.png');
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-image: url('earth.png');
 }
 
 .wall {
-	width: 100%;
-	height: 100%;
-	background-size: cover;
-	background-image: url('wall.png');
-	background-position: center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-image: url('wall.png');
+  background-position: center;
 }
 
 .stairs_down {
-	width: 100%;
-	height: 100%;
-	background-size: cover;
-	background-image: url('stairs_down.png');
-	background-position: center;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-image: url('stairs_down.png');
+  background-position: center;
 }
 
 .gold {
-	height: 30%;
-	width: 30%;
-	background-image: url('gold3.png');
-	float: right;
-	background-size: cover;
-	z-index: 2;
-	position: absolute;
-	bottom:10%;
-	left:30%;
+  height: 30%;
+  width: 30%;
+  background-image: url('gold3.png');
+  float: right;
+  background-size: cover;
+  z-index: 2;
+  position: absolute;
+  bottom:10%;
+  left:30%;
 }
 
 .monster.player {
-	height: 100%;
-	width: 100%;
-	background-image: url('player.png');
-	float: right;
-	background-size: cover;
-	z-index: 2;
-	position: absolute;
-	top: -20%;
-	left:20%;
+  height: 100%;
+  width: 100%;
+  background-image: url('player.png');
+  float: right;
+  background-size: cover;
+  z-index: 2;
+  position: absolute;
+  top: -20%;
+  left:20%;
+}
+
+.monster.player.left {
+  background-image: url('playerl.png');
 }
 
 .monster.ogre {
+<<<<<<< HEAD
 	opacitiy: 1;
 	background-image: url('ogre.png');
 	float: right;
@@ -100,46 +105,45 @@ body {
 	position: absolute;
 	top: -20px;
 	left:15px;
-}
 
 .monster.dwarf {
-	opacitiy: 1;
-	background-image: url('dwarf.png');
-	float: right;
-	left:15%;
-	width:50%;
-	background-size: cover;
-	z-index: 9999;
-	position: absolute;
+  opacitiy: 1;
+  background-image: url('dwarf.png');
+  float: right;
+  left:15%;
+  width:50%;
+  background-size: cover;
+  z-index: 9999;
+  position: absolute;
 }
 
 .monster {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 #welcomeView {
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
-	z-index: 10;
-	background-color: rgba(0, 0, 0, 0.5);
-	color: white;
-	text-align: center;
-	font-size: 10em;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  font-size: 10em;
 }
 
 #welcomeView div {
-	border: 3px outset rgba(150,150,150,0.5);
-	font-size:0.3em;
-	margin-left:40%;
-	margin-right:40%;
-	background-color: rgba(0, 0, 0, 0.5);
-	border-radius:0.2em;
-	cursor:pointer;
+  border: 3px outset rgba(150,150,150,0.5);
+  font-size:0.3em;
+  margin-left:40%;
+  margin-right:40%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius:0.2em;
+  cursor:pointer;
 }
