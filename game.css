@@ -30,8 +30,8 @@ body {
 }
 
 .cell {
-	height: 60px;
-	width: 60px;
+	height: 128px;
+	width: 128px;
 	background-size: cover;
 	display: block;
 	position: absolute;
@@ -68,30 +68,30 @@ body {
 }
 
 .gold {
-	height: 64px;
-	width: 64px;
+	height: 30%;
+	width: 30%;
 	background-image: url('gold3.png');
 	float: right;
 	background-size: cover;
 	z-index: 2;
 	position: absolute;
-	top: -20px;
+	bottom:10%;
+	left:30%;
 }
 
 .monster.player {
-	height: 80px;
-	width: 80px;
+	height: 100%;
+	width: 100%;
 	background-image: url('player.png');
 	float: right;
 	background-size: cover;
 	z-index: 2;
 	position: absolute;
-	top: -20px;
+	top: -20%;
+	left:20%;
 }
 
 .monster.ogre {
-	height: 80px;
-	width: 80px;
 	opacitiy: 1;
 	background-image: url('ghoul1.png');
 	float: right;
@@ -103,12 +103,11 @@ body {
 }
 
 .monster.dwarf {
-	height: 60px;
-	width: 30px;
 	opacitiy: 1;
 	background-image: url('dwarf.png');
 	float: right;
-	left:15px;
+	left:15%;
+	width:50%;
 	background-size: cover;
 	z-index: 9999;
 	position: absolute;
