@@ -1,7 +1,10 @@
 var Monster=Toolbox.Base.extend({
 
   constructor:function(ops) {
-    $.extend(this,ops);
+  //alert("X");
+    //$.extend(this,ops);
+    console.log("OPS",ops);
+    _.extend(this,ops);
     this.field.field(this.x, this.y).monster = this;
   },
   changed : Signal(),
@@ -43,3 +46,9 @@ var Monster=Toolbox.Base.extend({
     }
   }
 });
+
+var Player=Monster.extend({
+   
+});
+
+

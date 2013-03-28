@@ -96,16 +96,15 @@ body {
 }
 
 .monster.ogre {
-<<<<<<< HEAD
-	opacitiy: 1;
-	background-image: url('ogre.png');
-	float: right;
-	background-size: cover;
-	z-index: 9999;
-	position: absolute;
-	top: -20px;
-	left:15px;
-
+  opacitiy: 1;
+  background-image: url('ogre.png');
+  float: right;
+  background-size: cover;
+  z-index: 9999;
+  position: absolute;
+  top: -20px;
+  left:15px;
+}
 .monster.dwarf {
   opacitiy: 1;
   background-image: url('dwarf.png');
