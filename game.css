@@ -95,15 +95,20 @@ body {
   background-image: url('playerl.png');
 }
 
-.intem.ogre {
-	opacitiy: 1;
-	background-image: url('ogre.png');
-	float: right;
-	background-size: cover;
-	z-index: 9999;
-	position: absolute;
-	top: -20px;
-	left:15px;
+
+.monster.ogre {
+  opacitiy: 1;
+  background-image: url('ogre.png');
+  float: right;
+  background-size: cover;
+  z-index: 9999;
+  position: absolute;
+  top: -60px;
+  /*left:15px;*/
+  height:130%;
+  width:130%;
+  
+}
 
 .monster.dwarf {
   opacitiy: 1;
