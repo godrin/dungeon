@@ -1,12 +1,13 @@
-function Monster(ops) {
-  $.extend(this, ops);
-  var self = this;
+var Monster=Toolbox.Base.extend({
 
-  ops.field.field(self.x, self.y).monster = this;
+  constructor:function(ops) {
+    $.extend(this,ops);
+    this.field.field(this.x, this.y).monster = this;
+  },
+  changed : Signal(),
 
-  this.changed = Signal();
-
-  this.moveBy = function(by) {
+  moveBy : function(by) {
+  var self=this;
     var tx = self.x;
     var ty = self.y;
     if (by.x) {
@@ -17,28 +18,28 @@ function Monster(ops) {
     if (by.y)
       ty += by.y;
     console.log("TXY", tx, ty);
-    if (ops.field.posOk(tx, ty)) {
+    if (this.field.posOk(tx, ty)) {
       console.log("PoS OK");
-      if (ops.field.field(tx, ty).passable()) {
+      if (this.field.field(tx, ty).passable()) {
 	console.log("PASSABlE");
-	delete ops.field.field(self.x, self.y).monster;
+	delete this.field.field(self.x, self.y).monster;
 	var oldx = self.x, oldy = self.y;
 	self.x = tx;
 	self.y = ty;
-	ops.field.field(self.x, self.y).monster = self;
+	this.field.field(self.x, self.y).monster = self;
 	//console.log(css);
 	$.map(getRange(self.x, self.y), function(pos) {
-	  var field = ops.field.field(pos.x, pos.y);
+	  var field = self.field.field(pos.x, pos.y);
 	  if (field) {
 	    field.changed();
 	  }
 	});
-	ops.field.fieldChanged(oldx, oldy, self);
-	ops.field.fieldChanged(self.x, self.y, self);
+	this.field.fieldChanged(oldx, oldy, self);
+	this.field.fieldChanged(self.x, self.y, self);
 	self.changed();
       } else {
 	console.log("Field not passable");
       }
     }
-  };
-}
+  }
+});
