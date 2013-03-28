@@ -31,12 +31,24 @@ function CellView(ops) {
     + self.classForBg(self.cell.cell.value) + "'>";
     var itemClass = self.classFor(self.cell.cell.value);
     if (itemClass) {
-      h += "<div class='item " + itemClass + "'></div>";
+      //h += "<div class='item " + itemClass + "'></div>";
     }
+    _.each(self.cell.cell.items,function(item) {
+      console.log("ITEMmmmmmm",item);
+      var j=item.toJSON();
+      console.log("JJJJ",j);
+      for(var k in j) {
+	console.log("KKKK",k);
+	h += "<div class='item " + k + "'></div>";
+	//klass+=" "+k+" ";
+      }
+    });
+
+
     if (self.cell.cell.monster) {
       var klass="";
-      if(self.cell.cell.monster.direction)
-	klass=self.cell.cell.monster.direction;
+      //      if(self.cell.cell.monster.direction)
+	//	klass=self.cell.cell.monster.direction;
 
       h += "<div class='monster "
       + self.classFor(self.cell.cell.monster.value) + " "+klass

@@ -20,7 +20,7 @@ $(function() {
     h : 32
   });
 
-  var state = new GameStateModel();
+  var state = new GameStateModel({health:100,exp:0,gold:0});
 
   var model = new FieldModel({
 
@@ -30,7 +30,8 @@ $(function() {
 
   model.init();
   var view = new FieldView({
-    model : model
+    model : model,
+    state : state
   });
 
   view.init();
@@ -54,7 +55,7 @@ $(function() {
 
   welcomeView.show();
 
-  stateView.view();
+  //  stateView.view();
 
   controller.init();
   // alert("X");

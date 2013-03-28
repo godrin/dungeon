@@ -54,9 +54,15 @@ function FieldModel(ops) {
 	if (v == "@") {
 	  // self.player=monsters.player=new
 	  // Monster({value:"@",type:"player",x:x,y:y,field:self});
-	} else
+	} else {
 
+
+	  if(v=="$") {
+	    cell.items.push(new Item({gold:1}));
+	    v="$";
+	  }
 	  cell.value = v;
+	}
       } else if (x == 0 || x == self.w - 1 || y == 0 || y == self.h - 1)
 	cell.value = "#";
       fields.push(cell);

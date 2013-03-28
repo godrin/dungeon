@@ -2,8 +2,6 @@ var Monster=Backbone.Model.extend({
 
   constructor:function(ops) {
   Monster.__super__.constructor(ops);
-    //alert("X");
-    //$.extend(this,ops);
     console.log("OPS",ops);
     _.extend(this,ops);
     this.field.field(this.x, this.y).monster = this;
@@ -62,8 +60,15 @@ var Player=Monster.extend({
     this.bind("move",this.moved,this);
   },
   moved:function() {
-  var cell=this.myCell();
-  console.log("Moved to cell",cell);
+    var cell=this.myCell();
+    var self=this;
+    console.log("Moved to cell",cell);
+    _.each(cell.items,function(item) {
+      if(item.gold)
+	self.field.state.set({gold:self.field.state.get("gold")+item.gold});
+    });
+    cell.items=[];
+    cell.trigger("change"); //  FIXME
   }
 });
 
