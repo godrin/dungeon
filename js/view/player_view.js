@@ -1,13 +1,16 @@
-function PlayerView(ops) {
+function Camera(ops) {
   var self = this;
 
   $.extend(this, ops);
   this.update = function() {
     var player = $(".player");
 
-    var playerOffset=player.offset();
-    var dx=playerOffset.left-$(window).width()/2;
-    var dy=playerOffset.top-$(window).height()/2;
+    var pos=self.player.pos();
+
+    console.log("POS",pos);
+
+    var dx=pos.x*self.cellWidth;
+    var dy=pos.y*self.cellWidth;
     var dw=$(window).width()/4;
     var dh=$(window).height()/4;
     console.log("DDD",dx,dy,dw,dh);
@@ -22,13 +25,11 @@ function PlayerView(ops) {
 
     var field = $("#field");
 
-    var offset = playerCell.position();
 
-    var tx = -offset.left + centerx;
-    var ty = -offset.top + centery;
+    var tx = -dx + centerx;
+    var ty = -dy + centery;
     field.stop(true, false);
     console.log("TXXXXXX",tx,ty);
-    console.log("offleft: ",offset.left," ", tx);
     field.animate({
       left : tx,
       top : ty
@@ -36,3 +37,29 @@ function PlayerView(ops) {
   };
   self.player.changed.add(self, self.update);
 }
+
+function ElementView(ops) {
+  var self=this;
+  $.extend(this,ops);
+
+  var klass=this.monster.type;
+
+  var el=$("<div class='cell'><div class='monster "+klass+"'></div></div>");
+  el.appendTo(this.parentEl);
+
+  self.update=function(){
+    var pos=self.monster.pos();
+    var px=pos.x*self.cellWidth;
+    var py=pos.y*self.cellWidth;
+
+    el.css({left:""+px+"px",top:""+py+"px"});
+  };
+
+  self.update();
+
+  self.monster.changed.add(self,self.update);
+}
+
+
+
+

@@ -1,17 +1,21 @@
 var Monster=Backbone.Model.extend({
 
   constructor:function(ops) {
-  Monster.__super__.constructor(ops);
+    Monster.__super__.constructor.apply(this,arguments);
     console.log("OPS",ops);
     _.extend(this,ops);
+    console.log("MONSTER constructor",ops,this);
     this.field.field(this.x, this.y).monster = this;
+    this.changed=Signal();
   },
-  changed : Signal(),
   myCell:function() {
     return this.getCell(this);
   },
   getCell:function(pos) {
     return this.field.field(pos.x,pos.y);
+  },
+  pos:function() {
+    return {x:this.x,y:this.y};
   },
 
   moveBy : function(by) {
@@ -42,8 +46,8 @@ var Monster=Backbone.Model.extend({
 	    field.changed();
 	  }
 	});
-	this.field.fieldChanged(oldx, oldy, self);
-	this.field.fieldChanged(self.x, self.y, self);
+	//	this.field.fieldChanged(oldx, oldy, self);
+	//	this.field.fieldChanged(self.x, self.y, self);
 	self.changed();
       } else {
 	console.log("Field not passable");
@@ -55,8 +59,8 @@ var Monster=Backbone.Model.extend({
 
 var Player=Monster.extend({
   constructor:function(ops) {
-    Player.__super__.constructor(ops); 
-    console.log("PLAYER init",this);
+    console.log("PLAYER init",this,ops,Player.__super__.constructor);
+    Player.__super__.constructor.apply(this,arguments); 
     this.bind("move",this.moved,this);
   },
   moved:function() {
@@ -68,7 +72,7 @@ var Player=Monster.extend({
 	self.field.state.set({gold:self.field.state.get("gold")+item.gold});
     });
     cell.items=[];
-    cell.trigger("change"); //  FIXME
+    //cell.trigger("change"); //  FIXME
   }
 });
 

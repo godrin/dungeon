@@ -35,9 +35,15 @@ $(function() {
   });
 
   view.init();
-
+/*
   var playerView = new PlayerView({
-    player : model.player
+    player : model.player,
+    cellWidth:128
+  });
+*/
+  var camera = new Camera({
+    player:model.player,
+    cellWidth:128
   });
 
   var controller = new Controller({
@@ -60,6 +66,6 @@ $(function() {
   controller.init();
   // alert("X");
   setTimeout(function() {
-    playerView.update();
+    camera.update();
   }, 100);
 });

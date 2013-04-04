@@ -6,7 +6,7 @@ function FieldModel(ops) {
   var self = this;
 
   var fields = [];
-  var monsters = {};
+  self.monsters = [];
   this.posOk = function(x, y) {
     return x >= 0 && x < self.w && y >= 0 && y < self.h;
   };
@@ -55,8 +55,6 @@ function FieldModel(ops) {
 	  // self.player=monsters.player=new
 	  // Monster({value:"@",type:"player",x:x,y:y,field:self});
 	} else {
-
-
 	  if(v=="$") {
 	    cell.items.push(new Item({gold:1}));
 	    v="$";
@@ -67,35 +65,38 @@ function FieldModel(ops) {
 	cell.value = "#";
       fields.push(cell);
       //html+=cell.html();
-      if (v == "@")
-	self.player = monsters.player = new Player({
+      var monster=null;
+      if (v == "@") {
+	monster = self.player = new Player({
 	  value : "@",
 	  type : "player",
 	  x : x,
 	  y : y,
 	  field : self
 	});
-	else if (v == "O")
-	  self.ghoul = monsters.ghoul = new Monster({
-	    value : "O",
-	    type : "ogre",
-	    x : x,
-	    y : y,
-	    field : self
-	  });
-	  else if (v == "D")
-	    self.dwarf = monsters.dwarf = new Monster({
-	      value : "D",
-	      type : "dwarf",
-	      x : x,
-	      y : y,
-	      field : self
-	    });
-
+      } else if (v == "O") {
+	monster = new Monster({
+	  value : "O",
+	  type : "ogre",
+	  x : x,
+	  y : y,
+	  field : self
+	});
+      } else if (v == "D") {
+	monster = new Monster({
+	  value : "D",
+	  type : "dwarf",
+	  x : x,
+	  y : y,
+	  field : self
+	});
+      }
+      if(monster)
+	self.monsters.push(monster);
     }
     //$(self.el).html(html);
     if (!self.player)
-      self.player = monsters.player = new Monster({
+      self.player = new Monster({
 	value : "@",
 	type : "player",
 	x : 2,

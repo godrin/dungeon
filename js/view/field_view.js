@@ -29,5 +29,12 @@ function FieldView(ops) {
     $(self.el).html(html);
     $.map(cellViews,function(cellView) {cellView.update();});
 
+    $.map(this.model.monsters,function(monster) {
+      console.log("VIEW monster",monster);
+      var view=new ElementView({monster:monster,cellWidth:self.cellWidth,parentEl:self.el});
+      console.log("VIEW",view);
+    });
+
+
   };
 }
