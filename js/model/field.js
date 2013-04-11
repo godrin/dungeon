@@ -13,21 +13,6 @@ function FieldModel(ops) {
 
   this.fieldChanged = function(x, y, byWhom) {
     if (byWhom && byWhom.type == "player") {
-/*      $.map(getRange(x, y, 5, 5), function(pos) {
-	var f = self.field(pos.x, pos.y);
-	if (f) {
-	  var dx = (byWhom.x - pos.x), dy = (byWhom.y - pos.y);
-	  var op = 1.6 - Math.sqrt(dx * dx + dy * dy) / 3;
-	  if (op > 1)
-	    op = 1;
-	  if (op < 0)
-	    op = 0;
-	  if (op > f.opacity)
-	    f.opacity = op;
-	  f.changed();
-	}
-      });
-      */
     } else
       this.field(x, y).changed();
   };
@@ -42,8 +27,6 @@ function FieldModel(ops) {
       this.h = ops.field.length;
       this.w = ops.field[0].length;
     }
-
-    //var html="";
 
     for ( var i = 0; i < self.w * self.h; i++) {
       var cell = new Cell();
@@ -92,8 +75,10 @@ function FieldModel(ops) {
 	  field : self
 	});
       }
-      if(monster)
+      if(monster) {
 	self.monsters.push(monster);
+	cell.value=".";
+      }
     }
     //$(self.el).html(html);
     if (!self.player)
@@ -105,7 +90,31 @@ function FieldModel(ops) {
 	field : self
       });
 
+
+      self.player.bind("move",function() {
+	this.moveMonsters();
+      },self);
+
       self.fieldChanged(self.player.x,self.player.y,self.player);
+  };
+
+  this.moveMonsters=function() {
+    _.each(self.monsters,function(monster) {
+      if(monster==self.player)
+	return;
+      var x=0,y=0,v=0;
+      if(Math.random()<0.5) {
+	v=-1;
+      } else {
+	v=1;
+      }
+      if(Math.random()<0.5) {
+	x=v;
+      } else {
+	y=v;
+      }
+      monster.moveBy({x:x,y:y});
+    });
   };
 
   this.eachCell = function(callback) {

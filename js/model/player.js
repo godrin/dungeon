@@ -73,6 +73,7 @@ var Player=Monster.extend({
     });
     cell.items=[];
     cell.changed(); // trigger("change"); //  FIXME
+
   }
 });
 
