@@ -47,17 +47,18 @@ $(function() {
     field:model
   });
 
+  var welcomeView = new WelcomeView({
+    el : "#welcomeView"
+  });
   var controller = new Controller({
     model : model,
     view : view,
-    containerEl:"#field_container"
+    containerEl:"#field_container",
+    welcomeView:welcomeView
   });
   var stateView = new StateView({
     el : "#stateView",
     model : state
-  });
-  var welcomeView = new WelcomeView({
-    el : "#welcomeView"
   });
 
   welcomeView.show();

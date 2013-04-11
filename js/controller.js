@@ -56,13 +56,21 @@ function Controller(ops) {
   $.extend(this, ops);
   var self = this;
 
+  this.move=function(by) {
+    if(self.welcomeView.visible()) {
+      self.welcomeView.hide();
+    }
+    else
+      self.model.player.moveBy(by);
+  }
+
   this.init = function() {
     $(window).bind("keydown", function(ev) {
       console.log("EV", ev, ev.keyCode);
 
       var by = self.keymap[ev.keyCode];
       if (by) {
-	self.model.player.moveBy(by);
+	self.move(by);
 	// self.view.init();
       }
     });
@@ -79,13 +87,13 @@ function Controller(ops) {
 	var dy2 = dy * dy;
 	if (dx2 + dy2 > 2000) {
 	  if (dx2 > dy2 + 400) {
-	    self.model.player.moveBy({
+	    self.move({
 	      y : 0,
 	      x : (dx < 0 ? -1 : 1)
 	    });
 	  }
 	  if(dy2 > dx2 + 400) {
-	    self.model.player.moveBy({
+	    self.move({
 	      x : 0,
 	      y : (dy < 0 ? -1 : 1)
 	    });
