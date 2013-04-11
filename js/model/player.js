@@ -72,7 +72,7 @@ var Player=Monster.extend({
 	self.field.state.set({gold:self.field.state.get("gold")+item.gold});
     });
     cell.items=[];
-    //cell.trigger("change"); //  FIXME
+    cell.changed(); // trigger("change"); //  FIXME
   }
 });
 
