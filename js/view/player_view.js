@@ -34,8 +34,6 @@ function Camera(ops) {
       top : ty
     }, 300);
 
-
-
     $.map(getRange(pos.x, pos.y, 5, 5), function(cpos) {
       var f = self.field.field(cpos.x, cpos.y);
       if (f) {
@@ -70,8 +68,7 @@ function ElementView(ops) {
     var px=pos.x*self.cellWidth;
     var py=pos.y*self.cellWidth;
 
-    el.css({left:""+px+"px",top:""+py+"px"});
-
+    el.animate({left:""+px+"px",top:""+py+"px"},"fast");
 
     monsterEl.removeClass("left");
     monsterEl.removeClass("right");

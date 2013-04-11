@@ -102,18 +102,7 @@ function FieldModel(ops) {
     _.each(self.monsters,function(monster) {
       if(monster==self.player)
 	return;
-      var x=0,y=0,v=0;
-      if(Math.random()<0.5) {
-	v=-1;
-      } else {
-	v=1;
-      }
-      if(Math.random()<0.5) {
-	x=v;
-      } else {
-	y=v;
-      }
-      monster.moveBy({x:x,y:y});
+      monster.monsterMove();
     });
   };
 

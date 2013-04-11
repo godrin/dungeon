@@ -1,7 +1,7 @@
-var Monster=Backbone.Model.extend({
+var BasicMonster=Backbone.Model.extend({
 
   constructor:function(ops) {
-    Monster.__super__.constructor.apply(this,arguments);
+    BasicMonster.__super__.constructor.apply(this,arguments);
     console.log("OPS",ops);
     _.extend(this,ops);
     console.log("MONSTER constructor",ops,this);
@@ -46,8 +46,6 @@ var Monster=Backbone.Model.extend({
 	    field.changed();
 	  }
 	});
-	//	this.field.fieldChanged(oldx, oldy, self);
-	//	this.field.fieldChanged(self.x, self.y, self);
 	self.changed();
       } else {
 	console.log("Field not passable");
@@ -57,7 +55,7 @@ var Monster=Backbone.Model.extend({
   }
 });
 
-var Player=Monster.extend({
+var Player=BasicMonster.extend({
   constructor:function(ops) {
     console.log("PLAYER init",this,ops,Player.__super__.constructor);
     Player.__super__.constructor.apply(this,arguments); 
@@ -74,6 +72,30 @@ var Player=Monster.extend({
     cell.items=[];
     cell.changed(); // trigger("change"); //  FIXME
 
+  }
+});
+
+var Monster=BasicMonster.extend({
+  moveCounter:0,
+  monsterMove:function() {
+    this.moveCounter+=1;
+    if(this.moveCounter>2) {
+
+
+      var x=0,y=0,v=0;
+      if(Math.random()<0.5) {
+	v=-1;
+      } else {
+	v=1;
+      }
+      if(Math.random()<0.5) {
+	x=v;
+      } else {
+	y=v;
+      }
+      this.moveBy({x:x,y:y});
+      this.moveCounter=0;
+    }
   }
 });
 
