@@ -63,6 +63,7 @@ function ElementView(ops) {
 
   var el=$("<div class='cell'><div class='monster "+klass+"'></div></div>");
   el.appendTo(this.parentEl);
+  var monsterEl=$(".monster",el);
 
   self.update=function(){
     var pos=self.monster.pos();
@@ -70,6 +71,13 @@ function ElementView(ops) {
     var py=pos.y*self.cellWidth;
 
     el.css({left:""+px+"px",top:""+py+"px"});
+
+
+    monsterEl.removeClass("left");
+    monsterEl.removeClass("right");
+    if(self.monster.direction) {
+      monsterEl.addClass(self.monster.direction);
+    }
   };
 
   self.update();

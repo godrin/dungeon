@@ -81,7 +81,7 @@ function FieldModel(ops) {
       }
     }
     //$(self.el).html(html);
-    if (!self.player)
+    if (!self.player) {
       self.player = new Monster({
 	value : "@",
 	type : "player",
@@ -89,13 +89,13 @@ function FieldModel(ops) {
 	y : 2,
 	field : self
       });
+    }
 
+    self.player.bind("move",function() {
+      this.moveMonsters();
+    },self);
 
-      self.player.bind("move",function() {
-	this.moveMonsters();
-      },self);
-
-      self.fieldChanged(self.player.x,self.player.y,self.player);
+    self.fieldChanged(self.player.x,self.player.y,self.player);
   };
 
   this.moveMonsters=function() {
