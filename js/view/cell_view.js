@@ -5,6 +5,7 @@ function CellView(ops) {
     // "." : "pass",
     // "#" : "wall",
     "<" : "stairs_down",
+    ">" : "stairs_up",
     "$" : "gold"
   };
   this.cellId = "" + self.cell.x + "_" + self.cell.y;
@@ -19,6 +20,10 @@ function CellView(ops) {
   this.classForBg = function(chr) {
     if (chr == "#")
       return "wall";
+      if(chr==">")
+      return "stairs_up";
+      if(chr=="<")
+      return "stairs_down";
     return "pass";
   };
 

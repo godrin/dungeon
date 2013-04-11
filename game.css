@@ -59,6 +59,14 @@ body {
   background-position: center;
 }
 
+.stairs_up {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-image: url('stairs_up.png');
+  background-position: center;
+}
+
 .stairs_down {
   width: 100%;
   height: 100%;

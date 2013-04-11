@@ -17,14 +17,10 @@ function FieldView(ops) {
 	y:pcell.y*self.cellWidth
       });
 
-      var x = cell.cell.x * self.cellWidth, y = cell.cell.y
-      * self.cellWidth;
-      /*cell.el.css({
-	left : x,
-	top : y
-	});*/
-	html+=cell.html();
-	cellViews.push(cell);
+      var x = cell.cell.x * self.cellWidth;
+      var y = cell.cell.y * self.cellWidth;
+      html+=cell.html();
+      cellViews.push(cell);
     });
     $(self.el).html(html);
     $.map(cellViews,function(cellView) {cellView.update();});
