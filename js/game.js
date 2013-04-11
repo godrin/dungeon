@@ -43,7 +43,8 @@ $(function() {
 */
   var camera = new Camera({
     player:model.player,
-    cellWidth:128
+    cellWidth:128,
+    field:model
   });
 
   var controller = new Controller({

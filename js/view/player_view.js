@@ -25,7 +25,6 @@ function Camera(ops) {
 
     var field = $("#field");
 
-
     var tx = -dx + centerx;
     var ty = -dy + centery;
     field.stop(true, false);
@@ -34,6 +33,24 @@ function Camera(ops) {
       left : tx,
       top : ty
     }, 300);
+
+
+
+    $.map(getRange(pos.x, pos.y, 5, 5), function(cpos) {
+      var f = self.field.field(cpos.x, cpos.y);
+      if (f) {
+	var cdx = (pos.x - cpos.x), cdy = (pos.y - cpos.y);
+	var op = 1.6 - Math.sqrt(cdx * cdx + cdy * cdy) / 3;
+	if (op > 1)
+	  op = 1;
+	if (op < 0)
+	  op = 0;
+	if (op > f.opacity)
+	  f.opacity = op;
+	f.changedOpacity();
+      }
+    });
+
   };
   self.player.changed.add(self, self.update);
 }

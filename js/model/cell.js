@@ -1,7 +1,7 @@
 function Cell() {
   this.value = ".";
   var self = this;
-
+  this.opacity=0;
   this.items=[];
 
   this.get = function() {
@@ -17,4 +17,5 @@ function Cell() {
     return r;
   };
   this.changed = Signal();
+  this.changedOpacity = Signal();
 }

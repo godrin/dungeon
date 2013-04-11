@@ -13,7 +13,7 @@ function FieldModel(ops) {
 
   this.fieldChanged = function(x, y, byWhom) {
     if (byWhom && byWhom.type == "player") {
-      $.map(getRange(x, y, 5, 5), function(pos) {
+/*      $.map(getRange(x, y, 5, 5), function(pos) {
 	var f = self.field(pos.x, pos.y);
 	if (f) {
 	  var dx = (byWhom.x - pos.x), dy = (byWhom.y - pos.y);
@@ -27,6 +27,7 @@ function FieldModel(ops) {
 	  f.changed();
 	}
       });
+      */
     } else
       this.field(x, y).changed();
   };

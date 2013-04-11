@@ -50,13 +50,16 @@ function CellView(ops) {
     return self.innerelcache;
   };
 
+  this.updateOpacity=function() {
+    self.innerel().css({
+      opacity : self.cell.cell.opacity
+    }, "slow");
+  };
+
   this.update = function() {
     if (self.innerel()) {
       self.innerel().html(self.inner());
-
-      self.innerel().css({
-	opacity : self.cell.cell.opacity
-      }, "slow");
+      self.updateOpacity();
     }
   };
 
@@ -67,5 +70,10 @@ function CellView(ops) {
 
   self.cell.cell.changed.add(this, function() {
     self.update();
+  });
+
+
+  self.cell.cell.changedOpacity.add(this,function(){
+    self.updateOpacity();
   });
 }
