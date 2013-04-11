@@ -4,12 +4,8 @@ function CellView(ops) {
   var _classes = {
     // "." : "pass",
     // "#" : "wall",
-    "@" : "player",
     "<" : "stairs_down",
-    "O" : "ogre",
-    "$" : "gold",
-    "D" : "dwarf"
-
+    "$" : "gold"
   };
   this.cellId = "" + self.cell.x + "_" + self.cell.y;
   this.outer = function() {
@@ -30,35 +26,17 @@ function CellView(ops) {
     var h = "<div class='bg cellinner "
     + self.classForBg(self.cell.cell.value) + "'>";
 
-    if(false) {
-      var itemClass = self.classFor(self.cell.cell.value);
-
-      if (itemClass) {
-	//h += "<div class='item " + itemClass + "'></div>";
+    _.each(self.cell.cell.items,function(item) {
+      console.log("ITEMmmmmmm",item);
+      var j=item.toJSON();
+      console.log("JJJJ",j);
+      for(var k in j) {
+	console.log("KKKK",k);
+	h += "<div class='item " + k + "'></div>";
+	//klass+=" "+k+" ";
       }
-      _.each(self.cell.cell.items,function(item) {
-	console.log("ITEMmmmmmm",item);
-	var j=item.toJSON();
-	console.log("JJJJ",j);
-	for(var k in j) {
-	  console.log("KKKK",k);
-	  h += "<div class='item " + k + "'></div>";
-	  //klass+=" "+k+" ";
-	}
-      });
+    });
 
-
-      if (self.cell.cell.monster) {
-	var klass="";
-	//      if(self.cell.cell.monster.direction)
-	  //	klass=self.cell.cell.monster.direction;
-
-	h += "<div class='monster "
-	+ self.classFor(self.cell.cell.monster.value) + " "+klass
-	+ "' id='monster_" + self.cell.x + "_" + self.cell.y
-	+ "'></div>";
-      }
-    }
     h += "</div>";
     return h;
   };
@@ -86,6 +64,7 @@ function CellView(ops) {
     return self.outer();
   };
   this.innerelid = "#" + this.cellId + " .cellinner";
+
   self.cell.cell.changed.add(this, function() {
     self.update();
   });
