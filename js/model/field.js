@@ -74,6 +74,14 @@ function FieldModel(ops) {
 	  y : y,
 	  field : self
 	});
+	  } else if (v == "T") {
+	monster = new Monster({
+	  value : "T",
+	  type : "stone_troll",
+	  x : x,
+	  y : y,
+	  field : self
+	});
       }
       if(monster) {
 	self.monsters.push(monster);

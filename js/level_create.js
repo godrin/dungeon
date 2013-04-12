@@ -320,6 +320,10 @@ function createLevel(ops) {
     setdata(randomFreePos(), "D");
   });
 
+  make(4, function() {
+    setdata(randomFreePos(), "T");
+  });
+
   make(20, function() {
     randomDoor(0, 0, w, h);
   });

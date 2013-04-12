@@ -129,6 +129,20 @@ body {
   position: absolute;
 }
 
+.monster.stone_troll {
+  opacitiy: 1;
+  background-image: url('stone_troll.png');
+  float: right;
+  background-size: cover;
+  z-index: 9999;
+  position: absolute;
+  top: -60px;
+  /*left:15px;*/
+  height:130%;
+  width:130%;
+  
+}
+
 .monster {
   position: absolute;
   top: 0;
