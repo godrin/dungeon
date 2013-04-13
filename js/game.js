@@ -20,27 +20,16 @@ $(function() {
     h : 32
   });
 
-  var state = new GameStateModel({health:100,exp:0,gold:0});
-
   var model = new FieldModel({
-
-    field : field,
-    state : state
+    field : field
   });
 
   model.init();
   var view = new FieldView({
-    model : model,
-    state : state
+    model : model
   });
 
   view.init();
-/*
-  var playerView = new PlayerView({
-    player : model.player,
-    cellWidth:128
-  });
-*/
   var camera = new Camera({
     player:model.player,
     cellWidth:128,
@@ -58,7 +47,7 @@ $(function() {
   });
   var stateView = new StateView({
     el : "#stateView",
-    model : state
+    model : model.player //#state
   });
 
   welcomeView.show();
