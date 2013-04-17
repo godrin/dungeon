@@ -6,6 +6,7 @@ var BasicMonster=Backbone.Model.extend({
     _.extend(this,ops);
     console.log("MONSTER constructor",ops,this);
     this.field.field(this.x, this.y).monster = this;
+    this.set({xp:0,hp:10,gold:0});
     this.changed=Signal();
   },
   myCell:function() {
@@ -67,7 +68,7 @@ var Player=BasicMonster.extend({
     console.log("Moved to cell",cell);
     _.each(cell.items,function(item) {
       if(item.gold)
-	self.field.state.set({gold:self.field.state.get("gold")+item.gold});
+	self.set({gold:self.get("gold")+item.gold});
     });
     cell.items=[];
     cell.changed(); // trigger("change"); //  FIXME
@@ -80,8 +81,6 @@ var Monster=BasicMonster.extend({
   monsterMove:function() {
     this.moveCounter+=1;
     if(this.moveCounter>2) {
-
-
       var x=0,y=0,v=0;
       if(Math.random()<0.5) {
 	v=-1;
