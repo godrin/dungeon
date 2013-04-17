@@ -82,6 +82,15 @@ function FieldModel(ops) {
 	  y : y,
 	  field : self
 	});
+		  } else if (v == "G") {
+	monster = new Monster({
+	  value : "G",
+	  type : "gargoyle",
+	  x : x,
+	  y : y,
+	  field : self
+	});
+	
       }
       if(monster) {
 	self.monsters.push(monster);
