@@ -137,10 +137,29 @@ body {
   z-index: 9999;
   position: absolute;
   top: -5px;
-  /*left:15px;*/
   height:100%;
   width:100%;
-  
+}
+
+.monster.stone_troll.right {
+  background-image: url('stone_trollr.png');
+}
+
+.monster.gargoyle {
+  opacitiy: 1;
+  background-image: url('gargoyle.png');
+  float: right;
+  background-size: cover;
+  z-index: 9999;
+  position: absolute;
+  top: -30px;
+  /*left:15px;*/
+  height:110%;
+  width:110%;
+}
+
+.monster.gargoyle.right {
+  background-image: url('gargoyler.png');
 }
 
 .monster {
