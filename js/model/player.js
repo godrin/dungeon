@@ -2,9 +2,7 @@ var BasicMonster=Backbone.Model.extend({
 
   constructor:function(ops) {
     BasicMonster.__super__.constructor.apply(this,arguments);
-    console.log("OPS",ops);
     _.extend(this,ops);
-    console.log("MONSTER constructor",ops,this);
     this.field.field(this.x, this.y).monster = this;
     this.set({xp:0,hp:10,gold:0});
     this.changed=Signal();
@@ -21,6 +19,7 @@ var BasicMonster=Backbone.Model.extend({
   die:function() {
     console.log("DIE");
     this.field.removeMonster(this);
+    this.myCell().monster=null;
     this.trigger("die");
   },
   changeBy:function(vals) {
@@ -56,10 +55,12 @@ var BasicMonster=Backbone.Model.extend({
       ty += by.y;
     console.log("TXY", tx, ty);
     if (this.field.posOk(tx, ty)) {
+      var oldCell=this.myCell();
+      var newCell=this.field.field(tx,ty);
       console.log("PoS OK");
-      if (this.field.field(tx, ty).passable()) {
-	console.log("PASSABlE");
-	delete this.field.field(self.x, self.y).monster;
+      if (newCell.passable()) {
+	console.log("PASSABlE",oldCell,self.x,self.y,tx,ty);
+	oldCell.monster=null;
 	var oldx = self.x, oldy = self.y;
 	self.x = tx;
 	self.y = ty;
@@ -103,7 +104,8 @@ var Player=BasicMonster.extend({
     });
     cell.items=[];
     cell.changed(); // trigger("change"); //  FIXME
-
+    console.log("TRIGGER");
+    this.trigger("change");
   }
 });
 

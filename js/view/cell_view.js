@@ -32,11 +32,8 @@ function CellView(ops) {
     + self.classForBg(self.cell.cell.value) + "'>";
 
     _.each(self.cell.cell.items,function(item) {
-      console.log("ITEMmmmmmm",item);
       var j=item.toJSON();
-      console.log("JJJJ",j);
       for(var k in j) {
-	console.log("KKKK",k);
 	h += "<div class='item " + k + "'></div>";
 	//klass+=" "+k+" ";
       }

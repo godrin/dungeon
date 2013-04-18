@@ -52,10 +52,7 @@ $(function() {
 
   welcomeView.show();
 
-  //  stateView.view();
-
   controller.init();
-  // alert("X");
   setTimeout(function() {
     camera.update();
   }, 100);

@@ -7,13 +7,10 @@ function Camera(ops) {
 
     var pos=self.player.pos();
 
-    console.log("POS",pos);
-
     var dx=pos.x*self.cellWidth;
     var dy=pos.y*self.cellWidth;
     var dw=$(window).width()/4;
     var dh=$(window).height()/4;
-    console.log("DDD",dx,dy,dw,dh);
     if(dx*dx<dw*dw && dy*dy<dh*dh)
       return;
 
@@ -28,7 +25,6 @@ function Camera(ops) {
     var tx = -dx + centerx;
     var ty = -dy + centery;
     field.stop(true, false);
-    console.log("TXXXXXX",tx,ty);
     field.animate({
       left : tx,
       top : ty
@@ -53,34 +49,36 @@ function Camera(ops) {
   self.player.changed.add(self, self.update);
 }
 
-function ElementView(ops) {
-  var self=this;
-  $.extend(this,ops);
+var ElementView=Backbone.View.extend({
 
-  var klass=this.monster.type;
+  initialize:function() {
+    this.model.bind("move",this.update,this);
+    this.model.bind("die",this.die,this);
+  },
+  render:function() {
+    var klass=this.model.type;
+    this.el=$("<div class='cell'><div class='monster "+klass+"'></div></div>");
+    this.el.appendTo(this.options.parentEl);
+    this.monsterEl=$(".monster",this.el);
+    this.update();
+  },
+  update:function(){
+    var pos=this.model.pos();
+    var px=pos.x*this.options.cellWidth;
+    var py=pos.y*this.options.cellWidth;
 
-  var el=$("<div class='cell'><div class='monster "+klass+"'></div></div>");
-  el.appendTo(this.parentEl);
-  var monsterEl=$(".monster",el);
+    this.el.animate({left:""+px+"px",top:""+py+"px"},"fast");
 
-  self.update=function(){
-    var pos=self.monster.pos();
-    var px=pos.x*self.cellWidth;
-    var py=pos.y*self.cellWidth;
-
-    el.animate({left:""+px+"px",top:""+py+"px"},"fast");
-
-    monsterEl.removeClass("left");
-    monsterEl.removeClass("right");
-    if(self.monster.direction) {
-      monsterEl.addClass(self.monster.direction);
+    this.monsterEl.removeClass("left");
+    this.monsterEl.removeClass("right");
+    if(this.model.direction) {
+      this.monsterEl.addClass(this.model.direction);
     }
-  };
-
-  self.update();
-
-  self.monster.changed.add(self,self.update);
-}
+  },
+  die:function() {
+    this.monsterEl.removeClass(this.model.type).addClass("bones");
+  }
+});
 
 
 

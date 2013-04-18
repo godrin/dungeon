@@ -274,7 +274,6 @@ function createLevel(ops) {
   var centers = $.map(boxes, function(box) {
     return box.centers;
   });
-  console.log("BOXES", boxes, centers);
   for ( var i = 0; i < centers.length; i++) {
     var next = (i + 1) % centers.length;
     tunnel(centers[i], centers[next]);
@@ -311,7 +310,6 @@ function createLevel(ops) {
   make(30, function() {
     setdata(randomFreePos(), "$");
   });
-
   make(5, function() {
     setdata(randomFreePos(), "O");
   });
@@ -332,7 +330,6 @@ function createLevel(ops) {
 
   var poss = [ p, d, u ];
 
-  console.log("POSS", poss, p, d, u);
   var todo = 20, trials = 100;
   if (false)
     while (todo > 0 && trials > 0) {
