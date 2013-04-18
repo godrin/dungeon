@@ -105,7 +105,9 @@ function FieldModel(ops) {
 
     self.fieldChanged(self.player.x,self.player.y,self.player);
   };
-
+  this.removeMonster=function(monster) {
+    self.monsters=_.without(self.monsters,monster);
+  },
   this.moveMonsters=function() {
     _.each(self.monsters,function(monster) {
       if(monster==self.player)

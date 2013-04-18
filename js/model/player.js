@@ -18,6 +18,30 @@ var BasicMonster=Backbone.Model.extend({
   pos:function() {
     return {x:this.x,y:this.y};
   },
+  die:function() {
+    console.log("DIE");
+    this.field.removeMonster(this);
+    this.trigger("die");
+  },
+  changeBy:function(vals) {
+    for(var name in vals) {
+      console.log("CHANGE",name);
+      console.log("beforeHP",this,this.get(name),vals[name]);
+      var nvals={};
+      nvals[name]=this.get(name)+vals[name];
+      this.set(nvals);
+      if(name=="hp") {
+	console.log("afterHP",this,this.get(name),vals[name]);
+	if(this.get("hp")<1) {
+	  this.die();
+	}
+      }
+    }
+  },
+
+  attackMonster:function(monster) {
+    monster.changeBy({hp:-1});
+  },
 
   moveBy : function(by) {
     var self=this;
@@ -49,7 +73,14 @@ var BasicMonster=Backbone.Model.extend({
 	});
 	self.changed();
       } else {
-	console.log("Field not passable");
+	var monster=this.field.field(tx,ty).monster;
+	console.log("MONSTER",monster);
+	if(monster) {
+	  self.attackMonster(monster);
+	} else {
+
+	  console.log("Field not passable");
+	}
       }
     }
     this.trigger("move");
