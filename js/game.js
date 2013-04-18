@@ -1,21 +1,5 @@
 $(function() {
-  var field = [ //
-    "#####################", //
-    "#......##...........#", //
-    "#.####....########..#", //
-    "###..########.......#", //
-    "#..............######", //
-    "#....######..########", //
-    "####......####......#", //
-    "#.#######.......###.#", //
-    "#.#####...#######...#", //
-    "#.###...#######...###", //
-    "#.....#####.........#", // 
-    "########....#########", //
-    "#@..........#########", //
-  "#<###################" ];
-
-  field = createLevel({
+  var field = createLevel({
     w : 32,
     h : 32
   });
@@ -31,20 +15,22 @@ $(function() {
 
   view.init();
   var camera = new Camera({
-    player:model.player,
-    cellWidth:128,
-    field:model
+    player : model.player,
+    cellWidth : 128,
+    field : model
   });
 
   var welcomeView = new WelcomeView({
     el : "#welcomeView"
   });
+
   var controller = new Controller({
     model : model,
     view : view,
-    containerEl:"#field_container",
-    welcomeView:welcomeView
+    containerEl : "#field_container",
+    welcomeView : welcomeView
   });
+
   var stateView = new StateView({
     el : "#stateView",
     model : model.player //#state
@@ -53,7 +39,5 @@ $(function() {
   welcomeView.show();
 
   controller.init();
-  setTimeout(function() {
-    camera.update();
-  }, 100);
+  camera.update();
 });
