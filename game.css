@@ -176,6 +176,14 @@ body {
   height: 100%;
 }
 
+.bones {
+    background-image: url('corpse.png');
+}
+
+.bones {
+    background-image: url('corpse.png');
+}
+
 #welcomeView {
   position: absolute;
   top: 0px;
