@@ -112,11 +112,15 @@ body {
   z-index: 9999;
   position: absolute;
   top: -60px;
-  /*left:15px;*/
   height:130%;
   width:130%;
   
 }
+
+.monster.ogre.right {
+  background-image: url('ogrer.png');
+}
+
 
 .monster.dwarf {
   opacitiy: 1;
@@ -129,6 +133,9 @@ body {
   position: absolute;
 }
 
+.monster.dwarf.right {
+  background-image: url('dwarfr.png');
+}
 .monster.stone_troll {
   opacitiy: 1;
   background-image: url('stone_troll.png');
@@ -146,7 +153,6 @@ body {
 }
 
 .monster.gargoyle {
-  opacitiy: 1;
   background-image: url('gargoyle.png');
   float: right;
   background-size: cover;
