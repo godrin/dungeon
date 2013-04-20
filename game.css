@@ -178,11 +178,9 @@ body {
 
 .bones {
     background-image: url('corpse.png');
+    background-size: cover;
 }
 
-.bones {
-    background-image: url('corpse.png');
-}
 
 #welcomeView {
   position: absolute;
