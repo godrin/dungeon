@@ -1,14 +1,14 @@
-* DONE view items - update cell-view if item is taken
-* DONE change lighting when moving
-* DONE move monsters on move
 * lighting with gradients
-* DONE fighting/ attacking
 * use stairs
 * more monsters
 * story
 * sound/music
 * hit grafx
 * scale grafx
-* die without health
 * save game local or online
 * fix zindex
+* DONE view items - update cell-view if item is taken
+* DONE change lighting when moving
+* DONE move monsters on move
+* DONE die without health
+* DONE fighting/ attacking
