@@ -47,6 +47,7 @@ function Camera(ops) {
 
   };
   self.player.changed.add(self, self.update);
+  $(window).resize(function() {self.update()});
 }
 
 var ElementView=Backbone.View.extend({
