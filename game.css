@@ -48,14 +48,14 @@ body {
   height: 100%;
   width: 100%;
   background-size: cover;
-  background-image: url('earth.png');
+  background-image: url('pics/earth.png');
 }
 
 .wall {
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-image: url('wall.png');
+  background-image: url('pics/wall.png');
   background-position: center;
 }
 
@@ -63,7 +63,7 @@ body {
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-image: url('stairs_up.png');
+  background-image: url('pics/stairs_up.png');
   background-position: center;
 }
 
@@ -71,14 +71,14 @@ body {
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-image: url('stairs_down.png');
+  background-image: url('pics/stairs_down.png');
   background-position: center;
 }
 
 .gold {
   height: 30%;
   width: 30%;
-  background-image: url('gold3.png');
+  background-image: url('pics/gold3.png');
   float: right;
   background-size: cover;
   z-index: 2;
@@ -90,7 +90,7 @@ body {
 .monster.player {
   height: 100%;
   width: 100%;
-  background-image: url('player.png');
+  background-image: url('pics/player.png');
   float: right;
   background-size: cover;
   z-index: 2;
@@ -100,13 +100,13 @@ body {
 }
 
 .monster.player.left {
-  background-image: url('playerl.png');
+  background-image: url('pics/playerl.png');
 }
 
 
 .monster.ogre {
   opacitiy: 1;
-  background-image: url('ogre.png');
+  background-image: url('pics/ogre.png');
   float: right;
   background-size: cover;
   z-index: 9999;
@@ -118,13 +118,13 @@ body {
 }
 
 .monster.ogre.right {
-  background-image: url('ogrer.png');
+  background-image: url('pics/ogrer.png');
 }
 
 
 .monster.dwarf {
   opacitiy: 1;
-  background-image: url('dwarf.png');
+  background-image: url('pics/dwarf.png');
   float: right;
   left:15%;
   width:50%;
@@ -134,11 +134,11 @@ body {
 }
 
 .monster.dwarf.right {
-  background-image: url('dwarfr.png');
+  background-image: url('pics/dwarfr.png');
 }
 .monster.stone_troll {
   opacitiy: 1;
-  background-image: url('stone_troll.png');
+  background-image: url('pics/stone_troll.png');
   float: right;
   background-size: cover;
   z-index: 9999;
@@ -149,11 +149,11 @@ body {
 }
 
 .monster.stone_troll.right {
-  background-image: url('stone_trollr.png');
+  background-image: url('pics/stone_trollr.png');
 }
 
 .monster.gargoyle {
-  background-image: url('gargoyle.png');
+  background-image: url('pics/gargoyle.png');
   float: right;
   background-size: cover;
   z-index: 9999;
@@ -165,7 +165,7 @@ body {
 }
 
 .monster.gargoyle.right {
-  background-image: url('gargoyler.png');
+  background-image: url('pics/gargoyler.png');
 }
 
 .monster {
@@ -178,7 +178,7 @@ body {
 
 .monster.bones {
   background-size: cover;
-    background-image: url('corpse.png');
+    background-image: url('pics/corpse.png');
     background-size: cover;
 }
 
